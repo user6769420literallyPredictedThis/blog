@@ -1,58 +1,95 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+1. Clone the repository from github 
+```
+git clone [repository link]
+```
+---
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
-
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
-```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+2. Install **vscode**.
+```
+winget install vscode
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+2.1. Install **git**.
+```
+winget install git.git -i
+```
+Add a Git Bash profile, set Vscode as the default editor and **make sure that git uses main, not master**. These are the only settings you may need to change.
 
-## Contributing
+2.2. Install **php**.
+```
+winget install PHP.PHP.8.5 
+```
+*Tip: Use `winget search php` to make sure you are installing the latest version.*
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+3. Install the Bun package manager.
+```
+powershell -c "irm bun.sh/install.ps1|iex"
+```
+3.1. After successfully installing Bun, it may prompt you to restart terminal. Restart terminal.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+4. Install the Composer dependency manager for PHP via the download page:
+https://getcomposer.org/download/
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+5. Change the directory to the project directory.
+```
+cd [name of the cloned repository] 
+```
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+6. Use the following command to locate the `php.ini` file
+```
+where php
+```
+6.1. Through File Explorer, open the `php.ini` file using Vscode and enable the following extention on line **921**: `extension=fileinfo` by removing the comment.
+
+---
+
+7. Within the project directory run the following command to apply Composer to this project.
+```
+composer install
+```
+7.1. After successfully installing Composer, it may prompt you to restart terminal. Restart terminal.
+
+---
+
+8. Within the project directory run the following command to apply Bun to this project.
+```
+bun install
+```
+Tip: `bun i` works as well.
+
+---
+
+9. Create a new `.env` file by copying the `.env.example` file.
+
+---
+
+10. In the terminal, run the following command:
+```
+php artisan key:generate
+```
+what it does, is that it creates a random application key that will be stored in the `.env` file, under the `APP_KEY` variable.
+
+---
+11. In the terminal, run the following command:
+```
+php artisan migrate
+```
+This will execute all pending Laravel database migrations and update the database schema to match the app.'
+
+11.1. If it says that *"The SQLite database configured does not exist"*, it will also ask whether you'd like to create a it, you should say **yes**.
+
+---
+
+12. In the terminal, run the following command:
+```
+composer run dev
+```
+This initiates all necessary services for local development at once, including a local server.
+
