@@ -7,10 +7,13 @@ use Illuminate\Http\Request;
 
 class PublicController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::all();
-
+        $perPage = 16;
+        $page = $request->query('page');
+        // dump($_GET['page'] ?? 3);
+        $skip = ($page - 1) * $perPage;
+        $posts = Post::take($perPage)->skip($skip)->get();
         return view('welcome', compact('posts'));
     }
 
