@@ -9,11 +9,7 @@ class PublicController extends Controller
 {
     public function index(Request $request)
     {
-        $perPage = 16;
-        $page = $request->query('page');
-        // dump($_GET['page'] ?? 3);
-        $skip = ($page - 1) * $perPage;
-        $posts = Post::take($perPage)->skip($skip)->get();
+        $posts = Post::paginate(16);
         return view('welcome', compact('posts'));
     }
 
