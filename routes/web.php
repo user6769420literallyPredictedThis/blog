@@ -19,10 +19,6 @@ Route::get('/post/{post}', [PublicController::class, 'post'])->name('post');
 
 Route::resource('/admin/posts', PostController::class);
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
