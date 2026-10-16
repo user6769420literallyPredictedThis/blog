@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Post;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
 class PostSeeder extends Seeder
 {
@@ -13,6 +14,11 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
-        Post::factory(1000)->create();
+        $users = User::select('id')->get();
+        $posts = Post::factory(1000)->make();
+        foreach ($posts as $post) {
+            $post->user_id = $users->random()->id;
+            $post->save();
+        }
     }
 }
