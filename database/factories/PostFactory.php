@@ -23,9 +23,14 @@ class PostFactory extends Factory
         if(rand(0, 9)){
             $updated = $created;
         }
+        $imageUrl = null;
+        if(rand(0, 9)){
+            $imageUrl = 'https://picsum.photos/seed/'. fake()->uuid() .'/1280/960';
+        }
         return [
             'title' => $this->faker->sentence(),
             'body' => $this->faker->paragraphs(mt_rand(1, 5), true),
+            'image_path' => $imageUrl,
             'created_at' => $created,
             'updated_at' => $updated,
         ];
