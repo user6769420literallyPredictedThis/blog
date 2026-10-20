@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        /** @var App\Models\User $user */ 
+        /** @var App\Models\User $user */
         $user = Auth::user();
         $posts = $user->posts()->latest()->paginate(16);
         return view('posts.index', compact('posts'));
@@ -41,16 +41,18 @@ class PostController extends Controller
         $post->user()->associate(Auth::user());
         $post->save();
 
-        $image = $request->file('image')->store('', ['disk' => 'public']);
-        $url = Storage::url($image);
+        if ($request->file('image')) {
 
-        $image = new Image();
-        $image->path = $url;
-        $image->post()->associate($post);
-        $image->save();
+            $image = $request->file('image')->store('', ['disk' => 'public']);
+            $url = Storage::url($image);
+
+            $image = new Image();
+            $image->path = $url;
+            $image->post()->associate($post);
+            $image->save();
+        }
 
         return redirect()->route('posts.index');
-
     }
 
     /**

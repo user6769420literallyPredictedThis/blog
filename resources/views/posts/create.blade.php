@@ -22,7 +22,7 @@
             </fieldset>
             <fieldset class="fieldset">
                 <legend class="fieldset-legend">Image</legend>
-                <input name="image" type="file"
+                <input name="image" type="file" accept="image/*"
                     class="file-input w-full @error('image')file-input-error @enderror" />
                 @error('image')
                     <p class="label text-error">{{ $message }}</p>
