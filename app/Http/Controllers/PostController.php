@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -38,6 +40,15 @@ class PostController extends Controller
         // $post->title = $request->input('body');
         $post->user()->associate(Auth::user());
         $post->save();
+
+        $image = $request->file('image')->store('', ['disk' => 'public']);
+        $url = Storage::url($image);
+
+        $image = new Image();
+        $image->path = $url;
+        $image->post()->associate($post);
+        $image->save();
+
         return redirect()->route('posts.index');
 
     }

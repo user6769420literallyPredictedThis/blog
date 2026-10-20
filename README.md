@@ -89,6 +89,12 @@ This will execute all pending Laravel database migrations and update the databas
 
 12. In the terminal, run the following command:
 ```
+php artisan storage:link
+```
+---
+
+13. In the terminal, run the following command:
+```
 composer run dev
 ```
 This initiates all necessary services for local development at once, including a local server.
