@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', [PublicController::class, 'index'])->name('home');
 Route::get('/buttons', [PublicController::class, 'buttons'])->name('buttons');
 Route::get('/post/{post}', [PublicController::class, 'post'])->name('post');
+Route::get('/comment/{post}', [PublicController::class, 'comment'])->name('comment');
 Route::get('/secure', [PublicController::class, 'index'])->name('secure')->middleware(['auth', 'password.confirm']);
 
 // Route::get('/admin/posts', [PostController::class, 'index'])->name('posts.index');

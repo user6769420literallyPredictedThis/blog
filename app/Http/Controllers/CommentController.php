@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
+use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -29,7 +31,9 @@ class CommentController extends Controller
      */
     public function store(StoreCommentRequest $request)
     {
-        //
+        $comment = new Comment($request->validated());
+        $comment->user()->associate(Auth::user());
+        $comment->save();
     }
 
     /**
