@@ -2,7 +2,8 @@
 @section('content')
     <div class="container mx-auto">
 
-        <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data" class="card bg-base-300 shadow-sm w-2/3 mx-auto p-3">
+        <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data"
+            class="card bg-base-300 shadow-sm w-2/3 mx-auto p-3">
             @csrf
             <fieldset class="fieldset">
                 <legend class="fieldset-legend">Title</legend>
@@ -27,6 +28,18 @@
                 @error('images.*')
                     <p class="label text-error">{{ $message }}</p>
                 @enderror
+            </fieldset>
+            <fieldset>
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend">Tags</legend>
+                    <select class="select">
+                        <option disabled selected>Pick a tag</option>
+                        @foreach($tags as $tag)
+                        <option>{{ $tag->name }}</option>
+                        @endforeach
+                    </select>
+                    <span class="label">Optional</span>
+                </fieldset>
             </fieldset>
             <button class="btn btn-primary">Create</button>
         </form>
