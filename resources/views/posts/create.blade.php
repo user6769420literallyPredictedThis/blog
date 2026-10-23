@@ -32,12 +32,12 @@
             <fieldset>
                 <fieldset class="fieldset">
                     <legend class="fieldset-legend">Tags</legend>
-                    <select class="select">
-                        <option disabled selected>Pick a tag</option>
-                        @foreach($tags as $tag)
-                        <option>{{ $tag->name }}</option>
-                        @endforeach
-                    </select>
+                        <div class="flex flex-wrap gap-2">
+                            @foreach ($tags as $tag)
+                                <input type="checkbox" name="tags[]" value="{{ $tag->id }}" aria-label="{{ $tag->name }}"
+                                class="btn btn-sm" @checked(in_array($tag->id, old('tags', []))) />
+                            @endforeach
+                        </div>
                     <span class="label">Optional</span>
                 </fieldset>
             </fieldset>
