@@ -19,7 +19,7 @@
         @else
             <p>{{ !!$post->displayBody }}</p>
         @endisset
-        <span class="text-base-content/50">{{ $post->user->name }}</span>
+        <span class="text-base-content/50"><a href="{{ route('user', $post->user) }}" class="btn btn-link">{{ $post->user->name }}</a></span>
         <span class="text-base-content/50">{{ $post->created_at->diffForHumans() }}</span>
         <div>
             @foreach ($post->tags as $tag)
