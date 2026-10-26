@@ -11,7 +11,7 @@ Route::get('/', [PublicController::class, 'index'])->name('home');
 Route::get('/buttons', [PublicController::class, 'buttons'])->name('buttons');
 Route::get('/post/{post}', [PublicController::class, 'post'])->name('post');
 Route::get('/user/{user}', [PublicController::class, 'user'])->name('user');
-Route::post('/comment/{post}', [CommentController::class, 'store'])->name('comment');
+Route::post('/comment/{post}', [CommentController::class, 'store'])->name('comment')->middleware('auth');
 Route::get('/secure', [PublicController::class, 'index'])->name('secure')->middleware(['auth', 'password.confirm']);
 
 // Route::get('/admin/posts', [PostController::class, 'index'])->name('posts.index');

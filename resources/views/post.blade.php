@@ -2,6 +2,7 @@
 @section('content')
     <div class="container mx-auto">
         @include('partials.post-card')
+        @auth
         <h1 class="m-3">Comments:</h1>
         <form action="{{ route('comment', $post) }}" method="POST" enctype="multipart/form-data"
             class="card bg-base-200 shadow-sm mx-auto p-3">
@@ -17,6 +18,7 @@
                 <button class="btn btn-primary">Post Comment</button>
             </fieldset>
         </form>
+        @endauth
         @foreach ($post->comments as $comment)
             <div class="card bg-base-200 shadow-sm mt-2">
                 <div class="card-body">
