@@ -27,7 +27,10 @@
         <span class="text-base-content"><b>Comments:</b> {{ $post->comments_count }}</span>
         <div>
             @foreach ($post->tags as $tag)
-                <div class="badge badge-outline badge-primary">{{ $tag->name }}</div>
+                <span class="badge badge-outline badge-primary">
+                    <a href="{{ route('tag', $tag) }}">
+                    {{ $tag->name }}</a>
+                </span>
             @endforeach
         </div>
         <div class="card-actions justify-end">
